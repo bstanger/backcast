@@ -1,5 +1,9 @@
 var VideoListEntryView = Backbone.View.extend({
 
+  // initialize: function() {
+  //   this.selected = false;
+  // },
+
   events: {
     'click .video-list-entry-title': 'handleTitleClick'
   },
@@ -8,8 +12,14 @@ var VideoListEntryView = Backbone.View.extend({
     this.model.select();
   },
 
-  select: function() {
-  },
+  // select: function() {
+  //   this.model.set('selected', true);
+  //   // if (this.model.get('selected')) {
+  //   //   this.model.set('selected', false);
+  //   // } else {
+  //   //   this.model.set('selected', true);
+  //   // }
+  // },
 
   render: function() {
     this.$el.html(this.template(this.model.attributes));
