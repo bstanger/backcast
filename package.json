@@ -6,8 +6,9 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
+    "start": "live-server",
     "test": "open SpecRunner.html",
-    "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash"
+    "postinstall": "npm live-server; curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash"
   },
   "dependencies": {
     "backbone": "^1.3.3",
