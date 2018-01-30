@@ -22,8 +22,8 @@ var Videos = Backbone.Collection.extend({
     });
   },
 
-  // parse: function(response) {
-  //   return response.items;
-  // }
+  parse: function(response) {
+    return response.items;
+  }
 
 });
