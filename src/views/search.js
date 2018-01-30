@@ -1,14 +1,15 @@
 var SearchView = Backbone.View.extend({
 
-  el: '.search',
-
   events: {
-    'click .search-bar .btn': 'search' 
+    'click button': 'search',
+    'keyup input': 'search' 
   },
 
-  search: function() {
-    var query = this.$('.form-control').val();
-    this.collection.search(query);
+  search: function(e) {
+    var query = this.$('input').val();
+    if (e.currentTarget.tagName === 'BUTTON' || e.type === 'keyup' && e.keyCode === 13) {
+      this.collection.search(query);
+    }
   },
 
   render: function() {
