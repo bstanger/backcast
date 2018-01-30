@@ -2,7 +2,17 @@ var Videos = Backbone.Collection.extend({
 
   model: Video,
 
+  initialize: function() {
+    this.debouncedSearch = _.debounce(function(query) {
+      this.executeSearch(query);
+    }, 500, true);
+  },
+
   search: function(query) {
+    this.debouncedSearch(query);
+  },
+
+  executeSearch: function(query) {
     var self = this;
     Backbone.ajax({
       url: 'https://www.googleapis.com/youtube/v3/search',
@@ -16,8 +26,10 @@ var Videos = Backbone.Collection.extend({
         type: 'video'
       },
       success: function(response) {
-        self.reset(response.items);
-        self.trigger('sync', self);
+        if (response.items.length) {
+          self.reset(response.items);
+          self.trigger('sync', self);
+        }
       }
     });
   },

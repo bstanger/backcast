@@ -1,19 +1,23 @@
 var SearchView = Backbone.View.extend({
 
+  initialize: function(options) {
+    this.query = options.query || '';
+  },
+
   events: {
     'click button': 'search',
     'keyup input': 'search' 
   },
 
   search: function(e) {
-    var query = this.$('input').val();
-    if (e.currentTarget.tagName === 'BUTTON' || e.type === 'keyup' && e.keyCode === 13) {
-      this.collection.search(query);
+    this.query = this.$('input').val();
+    if (e.currentTarget.tagName === 'BUTTON' || e.type === 'keyup' && this.query.length > 3) {
+      this.collection.search(this.query);
     }
   },
 
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this));
     return this;
   },
 

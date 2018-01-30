@@ -6,6 +6,7 @@ var AppView = Backbone.View.extend({
     this.videos = new Videos();
     this.videos.search('hack reactor');
     this.videos.on('sync', this.render, this);
+    this.searchView;
     this.render();
   },
 
@@ -14,7 +15,12 @@ var AppView = Backbone.View.extend({
     this.$el.html(this.template());
     new VideoListView({ collection: this.videos }).render();
     new VideoPlayerView({ collection: this.videos }).render();
-    new SearchView({ el: this.$('.search'), collection: this.videos }).render();
+    if (this.searchView) {
+      this.searchView = new SearchView({ el: this.$('.search'), collection: this.videos, query: this.searchView.query});  
+    } else {
+      this.searchView = new SearchView({ el: this.$('.search'), collection: this.videos});
+    }
+    this.searchView.render();
     return this;
   },
 
