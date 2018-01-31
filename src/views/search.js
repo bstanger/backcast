@@ -18,9 +18,9 @@ var SearchView = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template(this));
+    this.$('.form-control').focus();
     return this;
   },
 
   template: templateURL('src/templates/search.html')
-
 });
