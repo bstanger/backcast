@@ -1,7 +1,7 @@
 var SearchView = Backbone.View.extend({
 
   initialize: function(options) {
-    this.query = options.query || '';
+    this.query = options.query;
   },
 
   events: {
